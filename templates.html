@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Health System Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>Health Programs</h1>
+    <ul>
+        {% for program in programs %}
+        <li><strong>{{ program.name }}</strong>: {{ program.description }}</li>
+        {% endfor %}
+    </ul>
+
+    <h1>Client Records</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Programs</th>
+        </tr>
+        {% for client in clients %}
+        <tr>
+            <td>{{ client.client_id }}</td>
+            <td>{{ client.name }}</td>
+            <td>{{ client.age }}</td>
+            <td>{{ client.gender }}</td>
+            <td>
+                {% if client.enrolled_programs %}
+                    {{ client.enrolled_programs|join(', ') }}
+                {% else %}
+                    None
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
